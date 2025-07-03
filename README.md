@@ -1,0 +1,2 @@
+# Hackaton
+RM -RF /Squad
