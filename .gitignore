@@ -151,3 +151,27 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# Windows/macOS metadata files
+*.Identifier
+*Zone.Identifier
+.DS_Store
+Thumbs.db
+
+# Duplicate virtual environments
+venv/
+# Keep .venv/ as primary
+
+# SQLite database files (INTERDIT - Utiliser PostgreSQL uniquement)
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+
+# VS Code settings (optional, uncomment if needed)
+# .vscode/
+
+# Temporary files
+*.tmp
+*.temp

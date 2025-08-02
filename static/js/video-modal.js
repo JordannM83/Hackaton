@@ -1,4 +1,7 @@
 // Video Modal JavaScript
+// Configuration du volume : 0.8 = 80% (peut être ajusté entre 0.0 et 1.0)
+const VIDEO_VOLUME_LEVEL = 0.8;
+
 class VideoModal {
     constructor() {
         this.modal = null;
@@ -33,6 +36,7 @@ class VideoModal {
         this.video.controls = false; // On peut changer en true si on veut les contrôles
         this.video.autoplay = true;
         this.video.muted = false; // Vidéo avec son
+        this.video.volume = VIDEO_VOLUME_LEVEL; // Volume configuré (par défaut 80%)
         this.video.preload = 'auto';
 
         // Assemble modal
@@ -96,6 +100,10 @@ class VideoModal {
         this.modal.classList.remove('hidden');
         this.isPlaying = true;
 
+        // Configure le volume avant la lecture
+        this.video.volume = VIDEO_VOLUME_LEVEL;
+        console.log(`🔊 Volume vidéo de bienvenue: ${Math.round(this.video.volume * 100)}%`);
+
         // Add matrix effect
         this.addMatrixEffect();
 
@@ -147,6 +155,19 @@ class VideoModal {
         if (this.modal && this.modal.parentNode) {
             this.modal.parentNode.removeChild(this.modal);
         }
+    }
+
+    // Méthode pour configurer le volume (0.0 à 1.0)
+    setVolume(volume) {
+        if (this.video) {
+            this.video.volume = Math.max(0, Math.min(1, volume));
+            console.log(`🔊 Volume vidéo configuré à ${Math.round(this.video.volume * 100)}%`);
+        }
+    }
+
+    // Méthode pour obtenir le volume actuel
+    getVolume() {
+        return this.video ? this.video.volume : 0;
     }
 }
 

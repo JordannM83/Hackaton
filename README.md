@@ -69,7 +69,35 @@ Un système de quiz interactif avec un thème Matrix pour l'apprentissage techni
 - **Indicateurs de progression** visuels avec animations
 - **Comparaison des performances** entre quiz classiques et PLD
 
-## 🚀 Installation Rapide
+## � Prérequis - PostgreSQL OBLIGATOIRE
+
+### ⚠️ IMPORTANT : SQLite INTERDIT
+Ce projet utilise **exclusivement PostgreSQL**. SQLite est **strictement interdit**.
+
+### Installation PostgreSQL
+```bash
+# Ubuntu/Debian
+sudo apt install postgresql postgresql-contrib
+
+# CentOS/RHEL  
+sudo yum install postgresql-server postgresql-contrib
+
+# macOS
+brew install postgresql && brew services start postgresql
+
+# Windows : Télécharger depuis postgresql.org
+```
+
+### Configuration rapide
+```bash
+# Créer la base de données
+sudo -u postgres createuser holbies_user --password
+sudo -u postgres createdb holbies_db --owner holbies_user
+```
+
+📚 **Guide complet** : [docs/POSTGRESQL_SETUP.md](docs/POSTGRESQL_SETUP.md)
+
+## �🚀 Installation Rapide
 
 ### Méthode 1 : Script Automatique
 ```bash
@@ -183,16 +211,19 @@ holbies-learning-hub/
 │       ├── learning.html    # Hub d'apprentissage
 │       └── dashboard.html   # Dashboard unifié
 ├── 🗄️ Base de données
-│   ├── alembic/             # Migrations
-│   ├── populate_db_balanced.py # Questions équilibrées - MIS À JOUR !
-│   └── alembic.ini          # Configuration
-├── 🛠️ Scripts utilitaires
-│   ├── start.sh             # Démarrage automatique
-│   ├── create_admin.py      # Création admin
-│   └── test_installation.py # Tests d'installation
+│   └── alembic/             # Migrations et versions
+├── 📁 Organisation
+│   ├── scripts/             # Scripts et utilitaires
+│   │   ├── database/        # Scripts de BDD
+│   │   ├── setup/           # Scripts de configuration
+│   │   └── ai_quiz_corrector.py # Correcteur IA
+│   ├── config/              # Fichiers de configuration
+│   │   ├── alembic.ini      # Configuration Alembic
+│   │   └── docker-compose.yml # Docker Compose
+│   ├── examples/            # Exemples et prototypes
+│   └── tests/               # Tests (à développer)
 └── 🐳 Déploiement
-    ├── Dockerfile
-    └── docker-compose.yml
+    └── Dockerfile
 ```
 
 ## 🧪 Test de l'Installation
